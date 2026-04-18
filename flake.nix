@@ -4,45 +4,35 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    gamespy = {
+      url = "github:feliwir/GamespySDK/582c79105aa851c5aa847f638722f61195b79c9b";
+      flake = false;
+    };
+    miles = {
+      url = "github:TheSuperHackers/miles-sdk-stub/0fef646a85c822475d55f19e3ca185263fb4a967";
+      flake = false;
+    };
+    liblzhl = {
+      url = "github:feliwir/liblzhl/fd7c70c4bb96e7a4a682f574e788c499f00a0b8d";
+      flake = false;
+    };
+    dxvk = {
+      url = "https://github.com/doitsujin/dxvk/releases/download/v2.6/dxvk-native-2.6-steamrt-sniper.tar.gz";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, gamespy, miles, liblzhl, dxvk }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
         };
 
-        gamespy = pkgs.fetchFromGitHub {
-          owner = "feliwir";
-          repo = "GamespySDK";
-          rev = "582c79105aa851c5aa847f638722f61195b79c9b";
-          hash = pkgs.lib.fakeHash;
-        };
-
-        miles = pkgs.fetchFromGitHub {
-          owner = "TheSuperHackers";
-          repo = "miles-sdk-stub";
-          rev = "0fef646a85c822475d55f19e3ca185263fb4a967";
-          hash = pkgs.lib.fakeHash;
-        };
-
-        liblzhl = pkgs.fetchFromGitHub {
-          owner = "feliwir";
-          repo = "liblzhl";
-          rev = "fd7c70c4bb96e7a4a682f574e788c499f00a0b8d";
-          hash = pkgs.lib.fakeHash;
-        };
-
-        dxvk = pkgs.fetchzip {
-          url = "https://github.com/doitsujin/dxvk/releases/download/v2.6/dxvk-native-2.6-steamrt-sniper.tar.gz";
-          hash = pkgs.lib.fakeHash;
-        };
-
         sage = pkgs.stdenv.mkDerivation {
           pname = "cnc-generals-zero-hour";
           version = "0.1.0";
-          src = self;
+          src = ./.;
 
           nativeBuildInputs = with pkgs; [
             cmake
