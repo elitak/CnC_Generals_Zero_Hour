@@ -2,10 +2,7 @@
   description = "Nix flake for building CnC Generals Zero Hour";
 
   inputs = {
-    nixpkgs = {
-      url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-      flake = false;
-    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     gamespy = {
       url = "https://github.com/feliwir/GamespySDK/archive/582c79105aa851c5aa847f638722f61195b79c9b.tar.gz";
       flake = false;
@@ -39,9 +36,7 @@
     {
       packages = forAllSystems (system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
+        pkgs = nixpkgs.legacyPackages.${system};
         gli = pkgs.stdenv.mkDerivation {
           pname = "gli";
           version = "1.0.1";
@@ -113,9 +108,7 @@
       });
       devShells = forAllSystems (system:
         let
-          pkgs = import nixpkgs {
-            inherit system;
-          };
+          pkgs = nixpkgs.legacyPackages.${system};
           package = self.packages.${system}.default;
         in
         {
