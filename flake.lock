@@ -1,0 +1,94 @@
+{
+  "nodes": {
+    "dxvk": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741885958,
+        "narHash": "sha256-MwWhzeXHqRCHHjKgtxA3cMtWvilLyESvic9bdCHY5yc=",
+        "type": "tarball",
+        "url": "https://github.com/doitsujin/dxvk/releases/download/v2.6/dxvk-native-2.6-steamrt-sniper.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/doitsujin/dxvk/releases/download/v2.6/dxvk-native-2.6-steamrt-sniper.tar.gz"
+      }
+    },
+    "gamespy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741622758,
+        "narHash": "sha256-9F2OqXDn9nPh3agQTDav8bdpGRj5va1rCSlinoh+rXs=",
+        "type": "tarball",
+        "url": "https://github.com/feliwir/GamespySDK/archive/582c79105aa851c5aa847f638722f61195b79c9b.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/feliwir/GamespySDK/archive/582c79105aa851c5aa847f638722f61195b79c9b.tar.gz"
+      }
+    },
+    "gli-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1621093584,
+        "narHash": "sha256-mL55jF93WSRCoOrSZZzXscMm2RsI0a550IuZJ7j8Q6s=",
+        "type": "tarball",
+        "url": "https://github.com/g-truc/gli/archive/779b99ac6656e4d30c3b24e96e0136a59649a869.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/g-truc/gli/archive/779b99ac6656e4d30c3b24e96e0136a59649a869.tar.gz"
+      }
+    },
+    "liblzhl": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741187037,
+        "narHash": "sha256-UlQSSDujReebKcWkeiZcW9GuVt9Shk38u73WqwayZuQ=",
+        "type": "tarball",
+        "url": "https://github.com/feliwir/liblzhl/archive/fd7c70c4bb96e7a4a682f574e788c499f00a0b8d.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/feliwir/liblzhl/archive/fd7c70c4bb96e7a4a682f574e788c499f00a0b8d.tar.gz"
+      }
+    },
+    "miles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742202349,
+        "narHash": "sha256-+kLLJ8yAg4KduboUkfa5kZ0afJOF5p7r53YKBGX8Mgs=",
+        "type": "tarball",
+        "url": "https://github.com/TheSuperHackers/miles-sdk-stub/archive/0fef646a85c822475d55f19e3ca185263fb4a967.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/TheSuperHackers/miles-sdk-stub/archive/0fef646a85c822475d55f19e3ca185263fb4a967.tar.gz"
+      }
+    },
+    "nixpkgs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776169885,
+        "narHash": "sha256-l/iNYDZ4bGOAFQY2q8y5OAfBBtrDAaPuRQqWaFHVRXM=",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz"
+      }
+    },
+    "root": {
+      "inputs": {
+        "dxvk": "dxvk",
+        "gamespy": "gamespy",
+        "gli-src": "gli-src",
+        "liblzhl": "liblzhl",
+        "miles": "miles",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

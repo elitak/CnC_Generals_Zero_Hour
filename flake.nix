@@ -2,18 +2,24 @@
   description = "Nix flake for building CnC Generals Zero Hour";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs = {
+      url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+      flake = false;
+    };
     gamespy = {
-      url = "github:feliwir/GamespySDK/582c79105aa851c5aa847f638722f61195b79c9b";
+      url = "https://github.com/feliwir/GamespySDK/archive/582c79105aa851c5aa847f638722f61195b79c9b.tar.gz";
       flake = false;
     };
     miles = {
-      url = "github:TheSuperHackers/miles-sdk-stub/0fef646a85c822475d55f19e3ca185263fb4a967";
+      url = "https://github.com/TheSuperHackers/miles-sdk-stub/archive/0fef646a85c822475d55f19e3ca185263fb4a967.tar.gz";
       flake = false;
     };
     liblzhl = {
-      url = "github:feliwir/liblzhl/fd7c70c4bb96e7a4a682f574e788c499f00a0b8d";
+      url = "https://github.com/feliwir/liblzhl/archive/fd7c70c4bb96e7a4a682f574e788c499f00a0b8d.tar.gz";
+      flake = false;
+    };
+    gli-src = {
+      url = "https://github.com/g-truc/gli/archive/779b99ac6656e4d30c3b24e96e0136a59649a869.tar.gz";
       flake = false;
     };
     dxvk = {
@@ -22,11 +28,25 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, gamespy, miles, liblzhl, dxvk }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs = { self, nixpkgs, gamespy, miles, liblzhl, gli-src, dxvk }:
+    let
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      forAllSystems = f: builtins.listToAttrs (map (system: {
+        name = system;
+        value = f system;
+      }) systems);
+    in
+    {
+      packages = forAllSystems (system:
       let
         pkgs = import nixpkgs {
           inherit system;
+        };
+        gli = pkgs.stdenv.mkDerivation {
+          pname = "gli";
+          version = "1.0.1";
+          src = gli-src;
+          nativeBuildInputs = [ pkgs.cmake ];
         };
 
         sage = pkgs.stdenv.mkDerivation {
@@ -49,16 +69,16 @@
           buildInputs = with pkgs; [
             zlib
             glm
-            gli
             openal
             ffmpeg
             freetype
             fontconfig
-            SDL3
-            SDL3_image
-            xorg.libX11
-            xorg.libXext
-            xorg.libXft
+            sdl3
+            sdl3-image
+            gli
+            libx11
+            libxext
+            libxft
             wayland
             libxkbcommon
             mesa
@@ -89,10 +109,19 @@
         };
       in
       {
-        packages.default = sage;
-
-        devShells.default = pkgs.mkShell {
-          inputsFrom = [ sage ];
-        };
+        default = sage;
       });
+      devShells = forAllSystems (system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+          };
+          package = self.packages.${system}.default;
+        in
+        {
+          default = pkgs.mkShell {
+            inputsFrom = [ package ];
+          };
+        });
+    };
 }
