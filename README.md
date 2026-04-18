@@ -119,6 +119,20 @@ Building with Visual Studio Code is straight-forward. Opening the project with t
 should automatically execute vcpkg to install the dependencies.
 You can then use the CMake extension to build the project.
 
+### Building with Nix (NixOS)
+
+This repository now includes a `flake.nix`.
+
+Build with:
+```sh
+nix build .#default
+```
+
+Enter a development shell with all build dependencies:
+```sh
+nix develop
+```
+
 ## Contributing
 
 This repository is currently accepting contributions (pull requests, issues, etc).
