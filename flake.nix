@@ -94,10 +94,10 @@
             "-DSAGE_USE_FREETYPE=ON"
             "-DSAGE_USE_FONTCONFIG=ON"
             "-DFETCHCONTENT_FULLY_DISCONNECTED=ON"
-            "-DFETCHCONTENT_SOURCE_DIR_gamespy=${gamespy}"
-            "-DFETCHCONTENT_SOURCE_DIR_miles=${miles}"
-            "-DFETCHCONTENT_SOURCE_DIR_liblzhl=${liblzhl}"
-            "-DFETCHCONTENT_SOURCE_DIR_dxvk=${dxvk}"
+            "-DFETCHCONTENT_SOURCE_DIR_GAMESPY=${gamespy}"
+            "-DFETCHCONTENT_SOURCE_DIR_MILES=${miles}"
+            "-DFETCHCONTENT_SOURCE_DIR_LIBLZHL=${liblzhl}"
+            "-DFETCHCONTENT_SOURCE_DIR_DXVK=${dxvk}"
           ];
 
           postInstall = ''
