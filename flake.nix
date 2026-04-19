@@ -2,7 +2,7 @@
   description = "Nix flake for building CnC Generals Zero Hour";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     gamespy = {
       url = "https://github.com/feliwir/GamespySDK/archive/582c79105aa851c5aa847f638722f61195b79c9b.tar.gz";
       flake = false;
