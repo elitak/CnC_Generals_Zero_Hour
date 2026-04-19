@@ -15,17 +15,13 @@
       url = "https://github.com/feliwir/liblzhl/archive/fd7c70c4bb96e7a4a682f574e788c499f00a0b8d.tar.gz";
       flake = false;
     };
-    gli-src = {
-      url = "https://github.com/g-truc/gli/archive/779b99ac6656e4d30c3b24e96e0136a59649a869.tar.gz";
-      flake = false;
-    };
     dxvk = {
       url = "https://github.com/doitsujin/dxvk/releases/download/v2.6/dxvk-native-2.6-steamrt-sniper.tar.gz";
       flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, gamespy, miles, liblzhl, gli-src, dxvk }:
+  outputs = { self, nixpkgs, gamespy, miles, liblzhl, dxvk }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" ];
       forAllSystems = f: builtins.listToAttrs (map (system: {
@@ -37,13 +33,6 @@
       packages = forAllSystems (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        gli = pkgs.stdenv.mkDerivation {
-          pname = "gli";
-          version = "1.0.1";
-          src = gli-src;
-          nativeBuildInputs = [ pkgs.cmake ];
-        };
-
         sage = pkgs.stdenv.mkDerivation {
           pname = "cnc-generals-zero-hour";
           version = "0.1.0";
