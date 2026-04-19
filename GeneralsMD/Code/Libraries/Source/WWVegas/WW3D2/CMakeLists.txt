@@ -19,7 +19,7 @@ target_include_directories(WW3D2 PUBLIC
 )
 
 if(SAGE_USE_FREETYPE)
-    find_package(freetype REQUIRED)
+    find_package(Freetype REQUIRED)
     target_link_libraries(WW3D2 PRIVATE
         Freetype::Freetype
     )
