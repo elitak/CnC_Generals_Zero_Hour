@@ -42,6 +42,10 @@
           version = "1.0.1";
           src = gli-src;
           nativeBuildInputs = [ pkgs.cmake ];
+          postPatch = ''
+            substituteInPlace CMakeLists.txt \
+              --replace-fail "cmake_minimum_required(VERSION 2.8)" "cmake_minimum_required(VERSION 3.5)"
+          '';
         };
 
         sage = pkgs.stdenv.mkDerivation {
