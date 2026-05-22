@@ -135,6 +135,10 @@ if(SAGE_USE_LZHL)
     GIT_REPOSITORY https://github.com/feliwir/liblzhl
     GIT_TAG fd7c70c4bb96e7a4a682f574e788c499f00a0b8d)
   FetchContent_MakeAvailable(liblzhl)
+  if(NOT TARGET LZHL::LZHL)
+    message(WARNING "liblzhl was not found or failed to configure; disabling SAGE_USE_LZHL")
+    set(SAGE_USE_LZHL OFF CACHE BOOL "Use LZH-Light" FORCE)
+  endif()
 endif()
 
 if(NOT MSVC)
