@@ -26,7 +26,7 @@ endif()
 
 target_include_directories(d3dx8 PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/Include
-    ${dxvk_SOURCE_DIR}/include/dxvk
+    ${directx_headers_SOURCE_DIR}
 )
 
 endif()
@@ -58,7 +58,7 @@ target_link_libraries(d3d8lib INTERFACE
 )
 
 target_include_directories(d3d8lib INTERFACE
-    ${dxvk_SOURCE_DIR}/include/dxvk
+    ${directx_headers_SOURCE_DIR}
 )
 
 # Search library in dxvk-native folder

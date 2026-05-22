@@ -127,6 +127,14 @@ else()
   )
   FetchContent_MakeAvailable(dxvk)
   message(STATUS "DXVK source directory: ${dxvk_SOURCE_DIR}")
+
+  # Separate fetch for the DirectX headers (d3d8.h, d3d9.h, etc.) that DXVK
+  # uses as a submodule but the prebuilt binary tarball may not ship.
+  FetchContent_Declare(
+    directx_headers
+    GIT_REPOSITORY https://github.com/Joshua-Ashton/mingw-directx-headers
+    GIT_TAG        9df86f2341616ef1888ae59919feaa6d4fad693d)
+  FetchContent_MakeAvailable(directx_headers)
 endif()
 
 if(SAGE_USE_LZHL)

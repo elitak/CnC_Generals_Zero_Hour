@@ -23,9 +23,13 @@
       url = "https://github.com/doitsujin/dxvk/releases/download/v2.6/dxvk-native-2.6-steamrt-sniper.tar.gz";
       flake = false;
     };
+    directx_headers = {
+      url = "https://github.com/Joshua-Ashton/mingw-directx-headers/archive/9df86f2341616ef1888ae59919feaa6d4fad693d.tar.gz";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, gamespy, miles, liblzhl, gli-src, dxvk }:
+  outputs = { self, nixpkgs, gamespy, miles, liblzhl, gli-src, dxvk, directx_headers }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" ];
       forAllSystems = f: builtins.listToAttrs (map (system: {
@@ -98,6 +102,7 @@
             "-DFETCHCONTENT_SOURCE_DIR_miles=${miles}"
             "-DFETCHCONTENT_SOURCE_DIR_liblzhl=${liblzhl}"
             "-DFETCHCONTENT_SOURCE_DIR_dxvk=${dxvk}"
+            "-DFETCHCONTENT_SOURCE_DIR_directx_headers=${directx_headers}"
           ];
 
           postInstall = ''
