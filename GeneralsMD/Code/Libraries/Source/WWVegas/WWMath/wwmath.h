@@ -47,6 +47,7 @@
 #include <float.h>
 #include <assert.h>
 #include <float.h>
+#include <string.h>
 
 /*
 ** Some global constants.
@@ -112,9 +113,12 @@ static void			Shutdown(void);
 // These are meant to be a collection of small math utility functions to be optimized at some point.
 static WWINLINE float Fabs(float val)
 {
-	int value=*(int*)&val;
-	value&=0x7fffffff;
-	return *(float*)&value;
+	unsigned int value;
+	memcpy(&value, &val, sizeof(value));
+	value &= 0x7fffffffu;
+	float result;
+	memcpy(&result, &value, sizeof(result));
+	return result;
 }
 
 static WWINLINE int Float_To_Int_Chop(const float& f);
