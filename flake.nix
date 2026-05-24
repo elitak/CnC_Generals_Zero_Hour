@@ -50,6 +50,12 @@
             "-DCMAKE_INSTALL_LIBDIR=lib"
             "-DGLI_TEST_ENABLE=OFF"
           ];
+          # GLI 0.8.3 has unqualified make_vec4 calls that become ambiguous
+          # with GLM 1.0.x which also exports make_vec4 into the same scope.
+          # Qualify all make_vec4 calls in convert_func.hpp with gli::.
+          postPatch = ''
+            sed -i 's/\bmake_vec4</gli::make_vec4</g' include/gli/core/convert_func.hpp
+          '';
         };
         sage = pkgs.stdenv.mkDerivation {
           pname = "cnc-generals-zero-hour";
