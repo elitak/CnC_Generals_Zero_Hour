@@ -442,6 +442,7 @@ struct AABCollisionStruct
 		StartBad(true),													// Startbad is true until one of the axes clears it
 		AxisId(-1),															// AxisId will be the axis that allowed the longest move
 		MaxFrac(0.0f),														// MaxFrac is the longest allowed move so far
+		Side(0),																// which side of the interval
 		Box0(box0),															
 		Box1(box1)
 	{
