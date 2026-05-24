@@ -93,6 +93,10 @@
             ibus
           ];
 
+          # Remap /build/ sandbox paths so they are not embedded in the
+          # installed binary (Nix post-install check forbids /build/ refs).
+          env.NIX_CFLAGS_COMPILE = "-ffile-prefix-map=/build/=";
+
           cmakeFlags = [
             "-GNinja"
             "-DSAGE_USE_DX8=OFF"
