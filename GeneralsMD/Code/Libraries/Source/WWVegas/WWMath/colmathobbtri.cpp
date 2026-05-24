@@ -164,7 +164,11 @@ struct BTCollisionStruct
 		A[1].Set(Box.Basis[0][1],Box.Basis[1][1],Box.Basis[2][1]);
 		A[2].Set(Box.Basis[0][2],Box.Basis[1][2],Box.Basis[2][2]);
 	
-		Vector3::Cross_Product(E[0],E[1],&N);	
+		Vector3::Cross_Product(E[0],E[1],&N);
+
+		// Zero-initialize AxE; entries are filled lazily during axis checks but
+		// the compiler cannot prove all 9 are written before they are read.
+		for (int i=0; i<3; i++) for (int j=0; j<3; j++) AxE[i][j].Set(0.0f,0.0f,0.0f);
 	}
 
 	bool						StartBad;			// Inital configuration is intersecting?
