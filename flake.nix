@@ -54,7 +54,7 @@
           # with GLM 1.0.x which also exports make_vec4 into the same scope.
           # Qualify all make_vec4 calls in convert_func.hpp with gli::.
           postPatch = ''
-            sed -i 's/\bmake_vec4</gli::make_vec4</g' include/gli/core/convert_func.hpp
+            sed -i 's/\bmake_vec4</gli::make_vec4</g' gli/core/convert_func.hpp
           '';
         };
         sage = pkgs.stdenv.mkDerivation {
