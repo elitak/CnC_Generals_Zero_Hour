@@ -109,7 +109,7 @@
             "-DSAGE_USE_FONTCONFIG=ON"
           # Point install RPATH directly at the dxvk libs in the Nix store so
             # the binary RPATH never contains /build/ sandbox paths.
-            "-DCMAKE_INSTALL_RPATH=${dxvk}/lib"
+            "-DCMAKE_INSTALL_RPATH=\${ORIGIN}:${dxvk}/lib"
             "-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON"
             "-DFETCHCONTENT_FULLY_DISCONNECTED=ON"
             "-DFETCHCONTENT_SOURCE_DIR_GAMESPY=${gamespy}"
