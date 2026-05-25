@@ -36,6 +36,17 @@ elseif(SAGE_USE_SDL3)
     target_link_libraries(RTS GameEngine GameEngineDevice SDL3::SDL3 milesstub)
     install(TARGETS RTS RUNTIME_DEPENDENCIES 
         DIRECTORIES ${dxvk_SOURCE_DIR}/lib
+        PRE_EXCLUDE_REGEXES
+            "libmss.*"      # Miles Sound System stub - not a real shared library
+            "libgamespy.*"  # GameSpy stub
+        POST_EXCLUDE_REGEXES
+            ".*libstdc\\+\\+.*"
+            ".*libgcc.*"
+            ".*libc\\.so.*"
+            ".*libm\\.so.*"
+            ".*libdl\\.so.*"
+            ".*libpthread\\.so.*"
+            ".*librt\\.so.*"
         RUNTIME DESTINATION .)
 endif()
 
