@@ -13,6 +13,8 @@ add_executable(SageTests
   TestMain.cpp
   TestString.cpp
   FastFloatTest.cpp
+  TestWWMath.cpp
+  TestVector3.cpp
 )
 
 target_link_libraries(
