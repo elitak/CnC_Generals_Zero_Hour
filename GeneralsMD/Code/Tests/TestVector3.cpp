@@ -177,7 +177,8 @@ TEST(Vector3CrossProduct, StandardBasis_XxY_is_Z)
 {
     Vector3 x(1.0f, 0.0f, 0.0f);
     Vector3 y(0.0f, 1.0f, 0.0f);
-    Vector3 z = Vector3::Cross_Product(x, y);
+    Vector3 z;
+    Vector3::Cross_Product(x, y, &z);
     ExpectV3Near(z, 0.0f, 0.0f, 1.0f);
 }
 
@@ -185,7 +186,8 @@ TEST(Vector3CrossProduct, StandardBasis_YxZ_is_X)
 {
     Vector3 y(0.0f, 1.0f, 0.0f);
     Vector3 z(0.0f, 0.0f, 1.0f);
-    Vector3 x = Vector3::Cross_Product(y, z);
+    Vector3 x;
+    Vector3::Cross_Product(y, z, &x);
     ExpectV3Near(x, 1.0f, 0.0f, 0.0f);
 }
 
@@ -193,7 +195,8 @@ TEST(Vector3CrossProduct, ParallelVectorsGiveZero)
 {
     Vector3 a(1.0f, 2.0f, 3.0f);
     Vector3 b(2.0f, 4.0f, 6.0f);
-    Vector3 c = Vector3::Cross_Product(a, b);
+    Vector3 c;
+    Vector3::Cross_Product(a, b, &c);
     ExpectV3Near(c, 0.0f, 0.0f, 0.0f, 1e-4f);
 }
 
@@ -201,8 +204,10 @@ TEST(Vector3CrossProduct, AntiCommutative)
 {
     Vector3 a(1.0f, 2.0f, 3.0f);
     Vector3 b(4.0f, 5.0f, 6.0f);
-    Vector3 ab = Vector3::Cross_Product(a, b);
-    Vector3 ba = Vector3::Cross_Product(b, a);
+    Vector3 ab;
+    Vector3 ba;
+    Vector3::Cross_Product(a, b, &ab);
+    Vector3::Cross_Product(b, a, &ba);
     ExpectV3Near(ab + ba, 0.0f, 0.0f, 0.0f, 1e-5f);
 }
 

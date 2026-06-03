@@ -11,9 +11,9 @@
       "displayName": "Default Config",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "generator": "Ninja",
+      "toolchainFile": "C:/src/vcpkg/scripts/buildsystems/vcpkg.cmake",
       "cacheVariables": {
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
         "SAGE_USE_GLM": "ON"
       }
     },
@@ -36,6 +36,7 @@
       "generator": "Visual Studio 17 2022",
       "architecture": "Win32",
       "cacheVariables": {
+        "CMAKE_GENERATOR_INSTANCE": "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools,version=17.14.37314.3",
         "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
       }
     },
@@ -67,6 +68,7 @@
       "generator": "Visual Studio 17 2022",
       "architecture": "Win32",
       "cacheVariables": {
+        "CMAKE_GENERATOR_INSTANCE": "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools,version=17.14.37314.3",
         "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
       }
     },
@@ -76,6 +78,7 @@
       "generator": "Visual Studio 17 2022",
       "architecture": "x64",
       "cacheVariables": {
+        "CMAKE_GENERATOR_INSTANCE": "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools,version=17.14.37314.3",
         "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
       }
     },

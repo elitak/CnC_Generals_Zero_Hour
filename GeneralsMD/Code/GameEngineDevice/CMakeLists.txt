@@ -7,6 +7,10 @@ add_library(GameEngineDevice STATIC
     ${SOURCES_WIN32Device}
 )
 
+if(MSVC)
+    target_compile_options(GameEngineDevice PRIVATE /FS)
+endif()
+
 target_include_directories(GameEngineDevice PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Include
     ${CMAKE_CURRENT_SOURCE_DIR}/../Libraries/Include
@@ -53,7 +57,10 @@ if(SAGE_USE_FFMPEG)
     )
     find_package(FFMPEG REQUIRED)
     target_include_directories(GameEngineDevice PRIVATE ${FFMPEG_INCLUDE_DIRS})
-    target_link_libraries(GameEngineDevice PRIVATE ${FFMPEG_LIBRARIES})
+    if(FFMPEG_LIBRARY_DIRS)
+        target_link_directories(GameEngineDevice PRIVATE ${FFMPEG_LIBRARY_DIRS})
+    endif()
+    target_link_libraries(GameEngineDevice PUBLIC ${FFMPEG_LIBRARIES})
     target_compile_definitions(GameEngineDevice PUBLIC SAGE_USE_FFMPEG)
 endif()
 

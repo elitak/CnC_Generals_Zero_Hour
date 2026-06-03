@@ -1,4 +1,9 @@
 cmake_minimum_required(VERSION 3.23)
+
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
+  message(FATAL_ERROR "In-source builds are not supported. Create a separate build directory and run cmake from there (for example: cmake --preset win32-testing or cmake -S . -B build/win32-testing).")
+endif()
+
 project(
   SAGE
   VERSION 0.1

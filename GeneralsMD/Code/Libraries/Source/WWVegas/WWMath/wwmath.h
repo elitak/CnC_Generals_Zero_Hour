@@ -201,7 +201,7 @@ WWINLINE bool WWMath::Fast_Is_Float_Positive(const float & val)
 
 WWINLINE bool WWMath::Is_Power_Of_2(const unsigned int val)
 {
-	return !((val)&val-1);
+	return (val != 0U) && ((val & (val - 1U)) == 0U);
 }
 
 WWINLINE float WWMath::Random_Float(float min,float max) 

@@ -37,7 +37,7 @@ elseif(SAGE_USE_SDL3)
     install(TARGETS RTS RUNTIME_DEPENDENCIES 
         DIRECTORIES ${dxvk_SOURCE_DIR}/lib
         PRE_EXCLUDE_REGEXES
-            "libmss.*"      # Miles Sound System stub - installed separately below
+            "libmss.*"      # Miles Sound System stub - not a real shared library
             "libgamespy.*"  # GameSpy stub
         POST_EXCLUDE_REGEXES
             ".*libstdc\\+\\+.*"
@@ -48,9 +48,6 @@ elseif(SAGE_USE_SDL3)
             ".*libpthread\\.so.*"
             ".*librt\\.so.*"
         RUNTIME DESTINATION .)
-    # Install the Miles stub shared library alongside the game binary so the
-    # dynamic linker can find libmss32.so at runtime.
-    install(TARGETS milesstub LIBRARY DESTINATION .)
 endif()
 
 if(SAGE_BUILD_TOOLS)
