@@ -1481,7 +1481,7 @@ void OptionsMenuInit( WindowLayout *layout, void *userData )
 	}
 	else
 	{
-		GadgetStaticTextSetText( labelVersion, versionString );
+		GadgetStaticTextSetText( labelVersion, UnicodeString(L"v1.04-test") );
 	}
 
 
